@@ -4,6 +4,5 @@
     <option name="migrateConfigurationsNotificationShown" value="true" />
     <option name="showAmbiguousImplicitArguments" value="false" />
     <option name="showNotFoundImplicitArguments" value="false" />
-    <option name="typeMismatchHints" value="false" />
   </component>
 </project>
