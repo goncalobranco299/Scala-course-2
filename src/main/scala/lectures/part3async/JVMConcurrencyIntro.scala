@@ -1,10 +1,9 @@
-package lectures.part3concurrency
-
-import jdk.internal.net.http.common.Utils.millis
+package lectures.part3async
 
 import java.util.concurrent.Executors
 
-object Intro extends App {
+
+object JVMConcurrencyIntro extends App {
 
   /*
     interface Runnable {
@@ -29,18 +28,18 @@ object Intro extends App {
   // different runs produce different results!
 
   // executors
-  val pool = Executors.newFixedThreadPool(aThread = 10)
+  val pool = Executors.newFixedThreadPool(10)
   pool.execute(() => println("something in the thread pool"))
 
   pool.execute(() => {
-    Thread.sleep(millis = 1000)
+    Thread.sleep(1000)
     println("done after 1 second")
   })
 
   pool.execute(() => {
-    Thread.sleep(millis = 1000)
+    Thread.sleep(1000)
     println("almost done")
-    Thread.sleep(millis = 1000)
+    Thread.sleep(1000)
     println("done after 2 seconds")
   })
 

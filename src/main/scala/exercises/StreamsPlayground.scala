@@ -100,6 +100,7 @@ object StreamsPlayground extends App {
   def eratosthenes(numbers: MyStream[Int]): MyStream[Int] = {
     if (numbers.isEmpty) numbers
     else new Cons(numbers.head, eratosthenes(numbers.tail.filter(_ % numbers.head != 0)))
-    println(eratosthenes(MyStream.from(start = 2)(_ + 1)).take(100).toList())
   }
+  println(eratosthenes(MyStream.from(start = 2)(_ + 1)).take(100).toList())
+
 }

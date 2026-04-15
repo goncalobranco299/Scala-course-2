@@ -34,7 +34,7 @@ object LazyEvaluation extends App {
   def retrieveMagicValue: Int = {
     // side effect or a long computation
     println("waiting")
-    Thread.sleep(millis = 1000)
+    Thread.sleep(1000)
     42
   }
 
@@ -79,7 +79,7 @@ object LazyEvaluation extends App {
     def foreach(f: A => Unit): Unit
     def map[B](f: A => B): MyStream[B]
     def flatMap[B](f: A => MyStream[B]): MyStream[B]
-    def flatMap(predicate: A => Boolean): MyStream[A]
+    def filter(predicate: A => Boolean): MyStream[A]
 
     def take(n: Int): MyStream[A] // takes the first n elements out of this stream
     def takeAsList(n: Int): List[A]
