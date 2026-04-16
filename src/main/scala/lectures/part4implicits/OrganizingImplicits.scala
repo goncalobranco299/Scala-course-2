@@ -4,7 +4,7 @@ object OrganizingImplicits extends App {
 
   implicit val reserveOrdering: Ordering[Int] = Ordering.fromLessThan(_ > _)
   implicit val normalreserveOrdering: Ordering[Int] = Ordering.fromLessThan(_ < _)
-  println(List(1,2,3,4,5).sorted)
+  println(List(1,2,3,4,5))
 
   // scala.Predef
 
@@ -18,16 +18,15 @@ object OrganizingImplicits extends App {
   // Exercise
   case class Person(name: String, age: Int)
 
+  object Person {
+    implicit val alphabeticOrdering: Ordering[Person] = Ordering.fromLessThan((a, b) => a.name.compareTo(b.name) < 0 )
+  }
+
   val persons = List(
     Person("Steve", 30),
     Person("Amy", 22),
     Person("John", 66)
   )
-
-  object Person {
-  implicit val alphabeticOrdering: Ordering[Person] = Ordering.fromLessThan((a, b) => a.name.compareTo(b.name) < 0 )
-  println(persons.sorted)
-  }
 
   implicit val ageOrdering: Ordering[Person] = Ordering.fromLessThan((a, b) => a.age < b.age)
   println(persons.sorted)
@@ -54,7 +53,6 @@ object OrganizingImplicits extends App {
   }
 
   import AgeOrdering._
-  println(persons.sorted)
 
   case class Purchase(nUnits: Int, unitPrice: Double)
   object Purchase {
@@ -68,7 +66,6 @@ object OrganizingImplicits extends App {
   object UnitPriceOrdering {
     implicit val unitPriceOrdering: Ordering[Purchase] = Ordering.fromLessThan(_.unitPrice < _.unitPrice)
   }
-
 }
 
 
