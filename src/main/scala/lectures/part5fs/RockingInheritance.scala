@@ -68,6 +68,4 @@ object RockingInheritance extends App {
     val color = new White
     color.print
   }
-
-
 }
