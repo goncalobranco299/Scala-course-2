@@ -64,4 +64,73 @@ object Variance extends App {
   class TerraNova extends Dog
   val bigFurry = shop.get(true, new TerraNova)
 
+  /*
+    Big rule
+    - method arguments are in CONTRAVARIANT postition
+    - return types are in COVARIANT position
+   */
+
+  /**
+   * 1. Invariant, covariant, contravariant
+   *  Parking[T](things:  List[T]
+   *  ipound(vechiles:  List[T])
+   *  checkVechiles(conditios: String): List[T]
+   *
+   *  2. used somoene else's API ILIst[T]
+   *
+   */
+
+  class Vechile
+  class Bike extends Vechile
+  class Car extends Vechile
+  class IList[T]
+
+  class IParking[T](vechile: List[T]) {
+    def park(vechile: T): IParking[T] = ???
+    def impound(vechiles: List[T]): IParking[T] = ???
+    def checkVehicls(conditions: String): List[T] = ???
+
+    def flatMap[S](f: T => IParking[S]): IParking[S] = ???
+  }
+
+  class CParking[+T](vechile: List[T]) {
+    def park[S >: T](vechile: S): CParking[S] = ???
+    def impount[S >: T](vechile: List[S]): CParking[S] = ???
+    def checkVehicles(conditions: String): List[T] = ???
+
+    def flatMap[S](f: T => IParking[S]): IParking[S] = ???
+
+  }
+
+  class XParking[-T](vechile: List[T]) {
+    def park(vechile: T): XParking[T] = ???
+    def impount(vechile: List[T]): XParking[T] = ???
+    def checkVehicles[S <: T](conditions: String): List[S] = ???
+
+    def flatMap[R <: T, S](f: Function[R, XParking[S]]): XParking[S] = ???
+
+  }
+
+  /*
+    Rule of thumb
+    - use covariance = COLLECION OF THINGS
+    - use contravariance = GROUP OF ACTIONS
+   */
+
+  class CParking2[+T](vechiles: IList[T]) {
+    def park[S >: T](vechiles: S): CParking2[S] = ???
+    def impount[S >: T](vechiles: List[S]): CParking2[S] = ???
+    def checkVehicles(conditions: String): List[T] = ???
+  }
+
+  class XParking2[-T](vechiles: List[T]) {
+    def park(vechiles: T): XParking2[T] = ???
+    def impount[S <: T](vechiles: List[S]): XParking2[S] = ???
+    def checkVehicles[S <: T](conditions: String): IList[S] = ???
+  }
+
+  /*
+  Rule
+   */
+
 }
